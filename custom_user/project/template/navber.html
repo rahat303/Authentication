@@ -1,19 +1,22 @@
 <div class="navbar">
     <div class="left">
         <a href="{% url "homePage" %}">Home</a>
-        <a href="">For Admin</a>
-        <a href="">For User</a>
+        <a href="{% url "adminPage" %}">For Admin</a>
+        <a href="{% url "userPage" %}">For User</a>
     </div>
     <div class="right">
+        {% if user.is_authenticated %}
         <div class="if_login">
-            <img src="" alt="" class="profile-pic">
+            <img src="" alt="{{user.username}}_{{user.user_type}}" class="profile-pic">
             <div class="dropdown">
                 <a href="">View Profile</a>
                 <a href="#">Edit Profile</a>
                 <a href="">Password change</a>
-                <a href="">Logout</a>
+                <a href="{% url "logoutPage" %}">Logout</a>
             </div>
         </div>
-        <a href="" target="mane">Login</a>
+        {% else %}
+        <a href="{% url "loginPage" %}">Login</a>
+        {% endif %}
     </div>
 </div>
